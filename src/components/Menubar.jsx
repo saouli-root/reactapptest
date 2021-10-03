@@ -26,22 +26,14 @@ export default function Menubar () {
       </NavDropdown>
     </Nav>
     <Nav>
-    <Nav.Link>
-        <Link className="link" to="/Auth"> sign up</Link>
-      </Nav.Link >
-      <Nav.Link>
+        <Link className="link" to="/auth"> Sign up</Link>
         <Link className="link" to="/about"> about</Link>
-      </Nav.Link >
-      
-        Dank memes
-    
     </Nav>
   </Navbar.Collapse>
   </Container>
 </Navbar>
 	)
 }
-
 
 
 

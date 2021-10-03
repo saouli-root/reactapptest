@@ -1,3 +1,11 @@
+.link{
+text-decoration: none;
+color: rgb(174, 190, 226);
+margin: 0px 20px;
+}
+
+
+
 .App {
   text-align: center;
 }
