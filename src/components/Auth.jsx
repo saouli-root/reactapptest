@@ -1,27 +1,19 @@
-import React , {useState} from 'react'
+import React , {useState , useContext} from 'react'
+import {Form , Button , Container} from 'react-bootstrap'
+import { useHistory } from 'react-router'
+import { AuthContext } from '../auth/AuthProvider'
 
-import {Form,Button,Container} from 'react-bootstrap'
-import axios from "axios"
-
-
-export default function Auth() {
+export default function Auth({props}) {
    const [email,setEmail]= useState("")
    const [password,setPassword ]= useState("")
-
-
-   const handleSubmit = (e) => {
-        e.preventDefault() 
-        const url = "http://localhost:5000"+"/api/rh/login"
-     const body = {
-         email:email,
-         password:password
-         }
-      console.log(url)
-      axios.post(url,body).then ((res) => {
-         console.log (res.data)
-         localStorage.setItem("user",res.data.token)
-      })
-   }    
+   const {login} = useContext(AuthContext)
+   const history =useHistory()
+   const handleSubmit =  (e) => {
+        e.preventDefault()
+        login(email, password)
+         history.push("/")
+       //window.location.href = '/'
+      }
     return (
       <Container className ="center mt-5">
                <Form onSubmit={handleSubmit} >

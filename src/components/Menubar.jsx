@@ -1,41 +1,59 @@
-import React from 'react'
-import {Navbar,Container,Nav,NavDropdown} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import React, { useContext } from 'react'
+import {Navbar,Container,Nav} from 'react-bootstrap'
+import {Link , useHistory} from 'react-router-dom'
+import{AuthContext} from '../auth/AuthProvider'
 
-export default function Menubar () {
+export default function Menubar() {
+  const {user,logout} =useContext(AuthContext)
+  const history = useHistory()
+    const handleLogout = () => {
+
+    logout()
+    history.pushState("/")
+  }
 	return (
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Container>
     <Navbar.Brand>
-    <Link to = "/">
+    <Link className="link" to = "/">
        Han Company
     </Link>   
     </Navbar.Brand>
   
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="me-auto">
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-      <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Nav>
-        <Link className="link" to="/auth"> Sign up</Link>
-        <Link className="link" to="/about"> about</Link>
-    </Nav>
+    <Nav className="me-auto"></Nav>
+       {
+        user ? (
+            <Nav>
+              	<button className="btn link" onClick={() => history.push("/dashboard")}>Dashboard</button>
+								<button className="btn link" onClick={() => history.push("/profile")}>Profile</button>
+								<button className="btn link" onClick={handleLogout}>Logout</button>
+            </Nav>
+             ):(
+            <Nav>
+            <Link className="link" to="/auth"> Sign up</Link>
+            <Link className="link" to="/about"> about</Link>
+            </Nav>
+
+       )
+       }
   </Navbar.Collapse>
   </Container>
-</Navbar>
+  </Navbar>
 	)
 }
 
 
+
+
+
+
+
+
+
+
+     
 
 
 
