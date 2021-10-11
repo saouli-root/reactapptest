@@ -11,7 +11,7 @@ export default function Auth({props}) {
    const handleSubmit =  (e) => {
         e.preventDefault()
         login(email, password)
-         history.push("/")
+         history.push("/dashboard")
        //window.location.href = '/'
       }
     return (

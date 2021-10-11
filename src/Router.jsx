@@ -6,7 +6,7 @@ import Error from "./components/Error"
 import Menubar from "./components/Menubar"
 import Auth from "./components/Auth"
 import Dashboard from "./Private/Dashboard"
-import Profile from "./Private/Profile"
+import Profile from "./Private/profile"
 import PrivateRoute from "./PrivateRoute"
 import { AuthContext } from './auth/AuthProvider'
 
